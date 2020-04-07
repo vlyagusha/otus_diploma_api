@@ -1,0 +1,48 @@
+version: '3'
+services:
+  nginx:
+    container_name: otus-nginx
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - ../:/home/www/${APP_HOST}
+      - ./nginx/${APP_HOST}.conf:/etc/nginx/conf.d/${APP_HOST}.conf
+      - phpsocket:/var/run
+    networks:
+      localnet:
+        aliases:
+          - ${APP_HOST}
+  php:
+    container_name: otus-php
+    build: php
+    volumes:
+      - ../:/home/www/${APP_HOST}
+      - phpsocket:/var/run
+    networks:
+      localnet:
+        aliases:
+          - ${APP_HOST}
+  postgres:
+    container_name: otus-postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - ../data/postgres:/var/lib/postgresql/data
+      - ../docker/postgres:/docker-entrypoint-initdb.d
+    networks:
+      localnet:
+        aliases:
+          - ${APP_HOST}
+
+volumes:
+  phpsocket:
+
+networks:
+  localnet:
+    driver: bridge
