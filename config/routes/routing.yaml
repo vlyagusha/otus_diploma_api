@@ -1,0 +1,6 @@
+app_movie_get_list:
+    path: /movies/list/{slug}
+    methods: GET
+    controller: App\Controller\MovieController::getListAction
+    requirements:
+        slug: '\w+'
