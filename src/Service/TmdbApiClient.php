@@ -19,24 +19,18 @@ class TmdbApiClient
         $this->key = $key;
     }
 
-    public function getMoviesList(string $title): array
+    public function getMoviesList(string $title, int $page = 1): array
     {
         $response = $this->client->get($this->endpoint . '/search/movie', [
-            'query' => $this->getCommonQuery() + [
-                'query' => $title
+            'query' => [
+                'api_key' => $this->key,
+                'language' => 'ru-RU',
+                'include_adult' => false,
+                'query' => $title,
+                'page' => $page,
             ],
         ]);
 
         return json_decode($response->getBody()->getContents(), true);
-    }
-
-    private function getCommonQuery(): array
-    {
-        return [
-            'api_key' => $this->key,
-            'language' => 'ru-RU',
-            'page' => 1,
-            'include_adult' => false,
-        ];
     }
 }

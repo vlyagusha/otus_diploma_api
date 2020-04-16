@@ -11,10 +11,11 @@ class MoviesInfoProvider
         $this->apiClient = $apiClient;
     }
 
-    public function getList(string $title): array
+    public function getList(string $title, int $page = 1): array
     {
         $result = [];
-        foreach ($this->apiClient->getMoviesList($title)['results'] as $movie) {
+        $moviesList = $this->apiClient->getMoviesList($title, $page);
+        foreach ($moviesList['results'] as $movie) {
             $result[] = [
                 'id' => $movie['id'],
                 'title' => $movie['title'],

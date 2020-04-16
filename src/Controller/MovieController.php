@@ -14,9 +14,11 @@ class MovieController extends AbstractController
         string $slug,
         MoviesInfoProvider $moviesInfoProvider
     ): Response {
+        $page = $request->query->getInt('page', 1);
+
         return $this->json([
             'status' => true,
-            'movies' => $moviesInfoProvider->getList($slug),
+            'movies' => $moviesInfoProvider->getList($slug, $page),
         ]);
     }
 }
