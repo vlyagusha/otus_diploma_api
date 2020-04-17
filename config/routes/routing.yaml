@@ -4,3 +4,8 @@ app_movie_get_list:
     controller: App\Controller\MovieController::getListAction
     requirements:
         slug: '\w+'
+
+app_user_movie_preference_post:
+    path: /movies/preference/
+    methods: POST
+    controller: App\Controller\UserMovieController::postUserMoviePreferenceAction
