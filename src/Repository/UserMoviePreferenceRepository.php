@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Doctrine\DBAL\Types\ArrayIntType;
 use App\Entity\UserMoviePreference;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +21,26 @@ class UserMoviePreferenceRepository extends ServiceEntityRepository
         parent::__construct($registry, UserMoviePreference::class);
     }
 
-    // /**
-    //  * @return UserMoviePreference[] Returns an array of UserMoviePreference objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getLikes(UserMoviePreference $userMoviePreference): array
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('movie_id', 'movie_id');
+        $rsm->addScalarResult('likes', 'likes');
 
-    /*
-    public function findOneBySomeField($value): ?UserMoviePreference
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->getEntityManager()
+            ->createNativeQuery('
+                select movie_id, round(sum(similarity)/count(similarity), 4) as likes from (
+                    select
+                        unnest(movies - :userMoviesArray) as movie_id,
+                        round(cardinality(:userMoviesArray & movies)::numeric / cardinality(:userMoviesArray | movies)::numeric, 4) as similarity
+                    from user_movie_preferences
+                    where :userMoviesArray && movies and user_id != :userId and movies - :userMoviesArray != :emptyArray
+                    order by similarity desc) as similarity_table
+                group by movie_id
+                order by likes desc;', $rsm)
+            ->setParameter('userId', $userMoviePreference->getUserId())
+            ->setParameter('userMoviesArray', $userMoviePreference->getMovies(), ArrayIntType::ARRAY_INT)
+            ->setParameter('emptyArray', [], ArrayIntType::ARRAY_INT)
+            ->getResult();
     }
-    */
 }
