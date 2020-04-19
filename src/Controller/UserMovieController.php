@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\UserMoviePreference;
 use App\Repository\UserMoviePreferenceRepository;
 use App\Service\MoviesInfoProvider;
-use App\Service\UserMovieRecommendationsManager;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\UserMoviePreferencesManager;
+use App\Service\UserMovieRecommendationsProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,26 +15,17 @@ final class UserMovieController extends AbstractController
 {
     public function postUserMoviePreferenceAction(
         Request $request,
-        EntityManagerInterface $entityManager
+        UserMoviePreferencesManager $userMoviePreferencesManager
     ): Response {
         $requestData = json_decode($request->getContent(), true);
         if (($userId = $requestData['user_id']) === null) {
             throw new BadRequestHttpException();
         }
-        if (($movieId = $requestData['movie_id']) === null) {
+        if (($movies = $requestData['movies']) === null) {
             throw new BadRequestHttpException();
         }
 
-        $userMoviePreference = $entityManager->getRepository(UserMoviePreference::class)->find($userId);
-        if ($userMoviePreference === null) {
-            $userMoviePreference = new UserMoviePreference();
-            $userMoviePreference->setUserId($userId);
-
-            $entityManager->persist($userMoviePreference);
-        }
-        $userMoviePreference->addMovie($movieId);
-
-        $entityManager->flush();
+        $userMoviePreference = $userMoviePreferencesManager->saveUserMoviePreferences($userId, $movies);
 
         return $this->json([
             'status' => true,
@@ -46,7 +36,7 @@ final class UserMovieController extends AbstractController
     public function getUserMovieRecommendationsAction(
         Request $request,
         string $userId,
-        UserMovieRecommendationsManager $userMovieRecommendationsManager,
+        UserMovieRecommendationsProvider $userMovieRecommendationsManager,
         UserMoviePreferenceRepository $userMoviePreferenceRepository,
         MoviesInfoProvider $moviesInfoProvider
     ): Response {

@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Entity\UserMoviePreference;
 use App\Repository\UserMoviePreferenceRepository;
 
-class UserMovieRecommendationsManager
+class UserMovieRecommendationsProvider
 {
     private UserMoviePreferenceRepository $userMoviePreferenceRepository;
     private MoviesInfoProvider $moviesInfoProvider;
