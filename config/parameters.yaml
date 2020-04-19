@@ -1,3 +1,4 @@
 parameters:
     app.tmdb.api_key: '%env(APP_TMDB_API_KEY)%'
     app.tmdb.api_endpoint: 'https://api.themoviedb.org/3'
+    app.request.secret: '%env(APP_REQUEST_SECRET)%'

@@ -32,3 +32,7 @@ services:
         arguments:
             $endpoint: '%app.tmdb.api_endpoint%'
             $key: '%app.tmdb.api_key%'
+
+    App\Service\Security\RequestSignChecker:
+        arguments:
+            $requestSecret: '%app.request.secret%'

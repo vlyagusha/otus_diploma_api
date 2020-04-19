@@ -9729,3 +9729,359 @@ Stack trace:
   INFO [ebec4d27] Running /usr/bin/env echo "Branch master (at 7aec60f01e80c7b41fec92b9a6c9cdaf66ad181c) deployed as release 20200418180249 by vlyagusha" >> /home/vlyagusha/www/otus/revisions.log as vlyagusha@35.246.230.32
  DEBUG [ebec4d27] Command: cd /home/vlyagusha/www/otus/releases && /usr/bin/env echo "Branch master (at 7aec60f01e80c7b41fec92b9a6c9cdaf66ad181c) deployed as release 20200418180249 by vlyagusha" >> /home/vlyagusha/www/otus/revisions.log
   INFO [ebec4d27] Finished in 0.169 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-04-19 12:16:55 +0300 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [94a4c1ad] Running /usr/bin/env mkdir -p /tmp as vlyagusha@35.246.230.32
+ DEBUG [94a4c1ad] Command: /usr/bin/env mkdir -p /tmp
+  INFO [94a4c1ad] Finished in 1.644 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh 0.0%
+  INFO Uploading /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh 100.0%
+  INFO [81ee7c1c] Running /usr/bin/env chmod 700 /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh as vlyagusha@35.246.230.32
+ DEBUG [81ee7c1c] Command: /usr/bin/env chmod 700 /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh
+  INFO [81ee7c1c] Finished in 0.119 seconds with exit status 0 (successful).
+  INFO [fcb4959c] Running /usr/bin/env git ls-remote git@github.com:vlyagusha/otus_diploma_api.git HEAD as vlyagusha@35.246.230.32
+ DEBUG [fcb4959c] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git ls-remote git@github.com:vlyagusha/otus_diploma_api.git HEAD )
+ DEBUG [fcb4959c] 	e107eb4a25971720e16c6318e2fb6ed578c6b178	HEAD
+  INFO [fcb4959c] Finished in 3.384 seconds with exit status 0 (successful).
+  INFO [f32ae795] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared /home/vlyagusha/www/otus/releases as vlyagusha@35.246.230.32
+ DEBUG [f32ae795] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared /home/vlyagusha/www/otus/releases
+  INFO [f32ae795] Finished in 0.172 seconds with exit status 0 (successful).
+  INFO [9ec903ae] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared/var as vlyagusha@35.246.230.32
+ DEBUG [9ec903ae] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared/var
+  INFO [9ec903ae] Finished in 0.119 seconds with exit status 0 (successful).
+  INFO [ccb1c587] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared as vlyagusha@35.246.230.32
+ DEBUG [ccb1c587] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared
+  INFO [ccb1c587] Finished in 0.124 seconds with exit status 0 (successful).
+ DEBUG [49678d00] Running [ -f /home/vlyagusha/www/otus/shared/.env ] as vlyagusha@35.246.230.32
+ DEBUG [49678d00] Command: [ -f /home/vlyagusha/www/otus/shared/.env ]
+ DEBUG [49678d00] Finished in 0.118 seconds with exit status 0 (successful).
+ DEBUG [00a312ee] Running [ -f /home/vlyagusha/www/otus/current/REVISION ] as vlyagusha@35.246.230.32
+ DEBUG [00a312ee] Command: [ -f /home/vlyagusha/www/otus/current/REVISION ]
+ DEBUG [00a312ee] Finished in 0.119 seconds with exit status 0 (successful).
+ DEBUG [2d7edfd8] Running /usr/bin/env cat /home/vlyagusha/www/otus/current/REVISION 2>/dev/null as vlyagusha@35.246.230.32
+ DEBUG [2d7edfd8] Command: /usr/bin/env cat /home/vlyagusha/www/otus/current/REVISION 2>/dev/null
+ DEBUG [2d7edfd8] 	7aec60f01e80c7b41fec92b9a6c9cdaf66ad181c
+ DEBUG [2d7edfd8] Finished in 0.120 seconds with exit status 0 (successful).
+ DEBUG [00123fe1] Running [ -f /home/vlyagusha/www/otus/repo/HEAD ] as vlyagusha@35.246.230.32
+ DEBUG [00123fe1] Command: [ -f /home/vlyagusha/www/otus/repo/HEAD ]
+ DEBUG [00123fe1] Finished in 0.120 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/vlyagusha/www/otus/repo
+ DEBUG [d0a38824] Running if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [d0a38824] Command: if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi
+ DEBUG [d0a38824] Finished in 0.120 seconds with exit status 0 (successful).
+  INFO [f4ba76e2] Running /usr/bin/env git remote set-url origin git@github.com:vlyagusha/otus_diploma_api.git as vlyagusha@35.246.230.32
+ DEBUG [f4ba76e2] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git remote set-url origin git@github.com:vlyagusha/otus_diploma_api.git )
+  INFO [f4ba76e2] Finished in 0.121 seconds with exit status 0 (successful).
+  INFO [44da2be2] Running /usr/bin/env git remote update --prune as vlyagusha@35.246.230.32
+ DEBUG [44da2be2] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [44da2be2] 	Fetching origin
+ DEBUG [44da2be2] 	From github.com:vlyagusha/otus_diploma_api
+   7aec60f..e107eb4  master     -> master
+  INFO [44da2be2] Finished in 1.776 seconds with exit status 0 (successful).
+ DEBUG [cbb83b1d] Running if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [cbb83b1d] Command: if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi
+ DEBUG [cbb83b1d] Finished in 0.176 seconds with exit status 0 (successful).
+  INFO [28bd0f3d] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091702 as vlyagusha@35.246.230.32
+ DEBUG [28bd0f3d] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091702 )
+  INFO [28bd0f3d] Finished in 0.127 seconds with exit status 0 (successful).
+  INFO [f5125252] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/vlyagusha/www/otus/releases/20200419091702 as vlyagusha@35.246.230.32
+ DEBUG [f5125252] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/vlyagusha/www/otus/releases/20200419091702 )
+  INFO [f5125252] Finished in 0.150 seconds with exit status 0 (successful).
+ DEBUG [c2dd676b] Running if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [c2dd676b] Command: if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi
+ DEBUG [c2dd676b] Finished in 0.120 seconds with exit status 0 (successful).
+ DEBUG [c19b23b0] Running /usr/bin/env git rev-list --max-count=1 master as vlyagusha@35.246.230.32
+ DEBUG [c19b23b0] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [c19b23b0] 	e107eb4a25971720e16c6318e2fb6ed578c6b178
+ DEBUG [c19b23b0] Finished in 0.125 seconds with exit status 0 (successful).
+ DEBUG [be452872] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [be452872] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi
+ DEBUG [be452872] Finished in 0.120 seconds with exit status 0 (successful).
+  INFO [d49afa71] Running /usr/bin/env echo "e107eb4a25971720e16c6318e2fb6ed578c6b178" > REVISION as vlyagusha@35.246.230.32
+ DEBUG [d49afa71] Command: cd /home/vlyagusha/www/otus/releases/20200419091702 && /usr/bin/env echo "e107eb4a25971720e16c6318e2fb6ed578c6b178" > REVISION
+  INFO [d49afa71] Finished in 0.121 seconds with exit status 0 (successful).
+  INFO [ca53f2ac] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091702 as vlyagusha@35.246.230.32
+ DEBUG [ca53f2ac] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091702
+  INFO [ca53f2ac] Finished in 0.124 seconds with exit status 0 (successful).
+ DEBUG [eafae99e] Running [ -L /home/vlyagusha/www/otus/releases/20200419091702/.env ] as vlyagusha@35.246.230.32
+ DEBUG [eafae99e] Command: [ -L /home/vlyagusha/www/otus/releases/20200419091702/.env ]
+ DEBUG [eafae99e] Finished in 0.120 seconds with exit status 1 (failed).
+ DEBUG [01623af4] Running [ -f /home/vlyagusha/www/otus/releases/20200419091702/.env ] as vlyagusha@35.246.230.32
+ DEBUG [01623af4] Command: [ -f /home/vlyagusha/www/otus/releases/20200419091702/.env ]
+ DEBUG [01623af4] Finished in 0.120 seconds with exit status 1 (failed).
+  INFO [43265813] Running /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/.env /home/vlyagusha/www/otus/releases/20200419091702/.env as vlyagusha@35.246.230.32
+ DEBUG [43265813] Command: /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/.env /home/vlyagusha/www/otus/releases/20200419091702/.env
+  INFO [43265813] Finished in 0.124 seconds with exit status 0 (successful).
+  INFO [87848f0b] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091702 as vlyagusha@35.246.230.32
+ DEBUG [87848f0b] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091702
+  INFO [87848f0b] Finished in 0.121 seconds with exit status 0 (successful).
+ DEBUG [43186e2c] Running [ -L /home/vlyagusha/www/otus/releases/20200419091702/var ] as vlyagusha@35.246.230.32
+ DEBUG [43186e2c] Command: [ -L /home/vlyagusha/www/otus/releases/20200419091702/var ]
+ DEBUG [43186e2c] Finished in 0.127 seconds with exit status 1 (failed).
+ DEBUG [0c6420c9] Running [ -d /home/vlyagusha/www/otus/releases/20200419091702/var ] as vlyagusha@35.246.230.32
+ DEBUG [0c6420c9] Command: [ -d /home/vlyagusha/www/otus/releases/20200419091702/var ]
+ DEBUG [0c6420c9] Finished in 0.119 seconds with exit status 1 (failed).
+  INFO [62b49c67] Running /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/var /home/vlyagusha/www/otus/releases/20200419091702/var as vlyagusha@35.246.230.32
+ DEBUG [62b49c67] Command: /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/var /home/vlyagusha/www/otus/releases/20200419091702/var
+  INFO [62b49c67] Finished in 0.121 seconds with exit status 0 (successful).
+ DEBUG [1d5c89da] Running /usr/bin/env ls -xr /home/vlyagusha/www/otus/releases as vlyagusha@35.246.230.32
+ DEBUG [1d5c89da] Command: /usr/bin/env ls -xr /home/vlyagusha/www/otus/releases
+ DEBUG [1d5c89da] 	20200419091702	20200418180249	20200418175815	20200418175449	20200418174755
+20200418174449
+ DEBUG [1d5c89da] Finished in 0.130 seconds with exit status 0 (successful).
+ DEBUG [ce7e8c5a] Running [ -f /home/vlyagusha/www/otus/releases/20200418180249/vendor ] as vlyagusha@35.246.230.32
+ DEBUG [ce7e8c5a] Command: [ -f /home/vlyagusha/www/otus/releases/20200418180249/vendor ]
+ DEBUG [ce7e8c5a] Finished in 0.153 seconds with exit status 1 (failed).
+ DEBUG [8a7768f3] Running [ -d /home/vlyagusha/www/otus/releases/20200418180249/vendor ] as vlyagusha@35.246.230.32
+ DEBUG [8a7768f3] Command: [ -d /home/vlyagusha/www/otus/releases/20200418180249/vendor ]
+ DEBUG [8a7768f3] Finished in 0.228 seconds with exit status 0 (successful).
+  INFO [acbc7227] Running /usr/bin/env cp -R /home/vlyagusha/www/otus/releases/20200418180249/vendor /home/vlyagusha/www/otus/releases/20200419091702/vendor as vlyagusha@35.246.230.32
+ DEBUG [acbc7227] Command: /usr/bin/env cp -R /home/vlyagusha/www/otus/releases/20200418180249/vendor /home/vlyagusha/www/otus/releases/20200419091702/vendor
+  INFO [acbc7227] Finished in 0.399 seconds with exit status 0 (successful).
+ DEBUG [835db632] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [835db632] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi
+ DEBUG [835db632] Finished in 0.125 seconds with exit status 0 (successful).
+  INFO [0acdd4c0] Running /usr/bin/env composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as vlyagusha@35.246.230.32
+ DEBUG [0acdd4c0] Command: cd /home/vlyagusha/www/otus/releases/20200419091702 && /usr/bin/env composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader
+  INFO [0acdd4c0] Finished in 1.239 seconds with exit status 0 (successful).
+ DEBUG [71a6a696] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [71a6a696] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi
+ DEBUG [71a6a696] Finished in 0.117 seconds with exit status 0 (successful).
+  INFO [3b2327ee] Running /usr/bin/env bin/console cache:clear as vlyagusha@35.246.230.32
+ DEBUG [3b2327ee] Command: cd /home/vlyagusha/www/otus/releases/20200419091702 && /usr/bin/env bin/console cache:clear
+ DEBUG [3b2327ee] 	
+ DEBUG [3b2327ee] 	 // Clearing the cache for the prod environment with debug                      
+ DEBUG [3b2327ee] 	 // false                                                                       
+ DEBUG [3b2327ee] 	
+ DEBUG [3b2327ee] 	 [OK] Cache for the "prod" environment (debug=false) was successfully cleared.  
+ DEBUG [3b2327ee] 	
+  INFO [3b2327ee] Finished in 0.433 seconds with exit status 0 (successful).
+ DEBUG [acc617ef] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [acc617ef] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi
+ DEBUG [acc617ef] Finished in 0.127 seconds with exit status 0 (successful).
+  INFO [2fdd953b] Running /usr/bin/env bin/console cache:warmup as vlyagusha@35.246.230.32
+ DEBUG [2fdd953b] Command: cd /home/vlyagusha/www/otus/releases/20200419091702 && /usr/bin/env bin/console cache:warmup
+ DEBUG [2fdd953b] 	
+ DEBUG [2fdd953b] 	 // Warming up the cache for the prod environment with debug                    
+ DEBUG [2fdd953b] 	 // false                                                                       
+ DEBUG [2fdd953b] 	
+ DEBUG [2fdd953b] 	 [OK] Cache for the "prod" environment (debug=false) was successfully warmed.   
+ DEBUG [2fdd953b] 	
+  INFO [2fdd953b] Finished in 0.241 seconds with exit status 0 (successful).
+ DEBUG [5d33d358] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [5d33d358] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091702; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091702'" 1>&2; false; fi
+ DEBUG [5d33d358] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO [c3e5ae6c] Running /usr/bin/env bin/console doctrine:migrations:migrate --no-interaction as vlyagusha@35.246.230.32
+ DEBUG [c3e5ae6c] Command: cd /home/vlyagusha/www/otus/releases/20200419091702 && /usr/bin/env bin/console doctrine:migrations:migrate --no-interaction
+ DEBUG [c3e5ae6c] 	                                                              
+ DEBUG [c3e5ae6c] 	                    Application Migrations                    
+ DEBUG [c3e5ae6c] 	                                                              
+ DEBUG [c3e5ae6c] 	
+ DEBUG [c3e5ae6c] 	No migrations to execute.
+  INFO [c3e5ae6c] Finished in 0.275 seconds with exit status 0 (successful).
+  INFO [46ecc343] Running /usr/bin/env ln -s /home/vlyagusha/www/otus/releases/20200419091702 /home/vlyagusha/www/otus/releases/current as vlyagusha@35.246.230.32
+ DEBUG [46ecc343] Command: /usr/bin/env ln -s /home/vlyagusha/www/otus/releases/20200419091702 /home/vlyagusha/www/otus/releases/current
+  INFO [46ecc343] Finished in 0.121 seconds with exit status 0 (successful).
+  INFO [300f4408] Running /usr/bin/env mv /home/vlyagusha/www/otus/releases/current /home/vlyagusha/www/otus as vlyagusha@35.246.230.32
+ DEBUG [300f4408] Command: /usr/bin/env mv /home/vlyagusha/www/otus/releases/current /home/vlyagusha/www/otus
+  INFO [300f4408] Finished in 0.121 seconds with exit status 0 (successful).
+ DEBUG [e29529d2] Running /usr/bin/env ls -x /home/vlyagusha/www/otus/releases as vlyagusha@35.246.230.32
+ DEBUG [e29529d2] Command: /usr/bin/env ls -x /home/vlyagusha/www/otus/releases
+ DEBUG [e29529d2] 	20200418174449	20200418174755	20200418175449	20200418175815	20200418180249
+20200419091702
+ DEBUG [e29529d2] Finished in 0.121 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on 35.246.230.32
+ DEBUG [8389b14a] Running [ -d /home/vlyagusha/www/otus/current ] as vlyagusha@35.246.230.32
+ DEBUG [8389b14a] Command: [ -d /home/vlyagusha/www/otus/current ]
+ DEBUG [8389b14a] Finished in 0.120 seconds with exit status 0 (successful).
+ DEBUG [ef287318] Running /usr/bin/env readlink /home/vlyagusha/www/otus/current as vlyagusha@35.246.230.32
+ DEBUG [ef287318] Command: /usr/bin/env readlink /home/vlyagusha/www/otus/current
+ DEBUG [ef287318] 	/home/vlyagusha/www/otus/releases/20200419091702
+ DEBUG [ef287318] Finished in 0.431 seconds with exit status 0 (successful).
+  INFO [ace52ec0] Running /usr/bin/env rm -rf /home/vlyagusha/www/otus/releases/20200418174449 as vlyagusha@35.246.230.32
+ DEBUG [ace52ec0] Command: /usr/bin/env rm -rf /home/vlyagusha/www/otus/releases/20200418174449
+  INFO [ace52ec0] Finished in 0.436 seconds with exit status 0 (successful).
+ DEBUG [b6009676] Running if test ! -d /home/vlyagusha/www/otus/releases; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [b6009676] Command: if test ! -d /home/vlyagusha/www/otus/releases; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases'" 1>&2; false; fi
+ DEBUG [b6009676] Finished in 0.341 seconds with exit status 0 (successful).
+  INFO [1bca9650] Running /usr/bin/env echo "Branch master (at e107eb4a25971720e16c6318e2fb6ed578c6b178) deployed as release 20200419091702 by vlyagusha" >> /home/vlyagusha/www/otus/revisions.log as vlyagusha@35.246.230.32
+ DEBUG [1bca9650] Command: cd /home/vlyagusha/www/otus/releases && /usr/bin/env echo "Branch master (at e107eb4a25971720e16c6318e2fb6ed578c6b178) deployed as release 20200419091702 by vlyagusha" >> /home/vlyagusha/www/otus/revisions.log
+  INFO [1bca9650] Finished in 0.464 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-04-19 12:17:39 +0300 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [32513186] Running /usr/bin/env mkdir -p /tmp as vlyagusha@35.246.230.32
+ DEBUG [32513186] Command: /usr/bin/env mkdir -p /tmp
+  INFO [32513186] Finished in 1.669 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh 0.0%
+  INFO Uploading /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh 100.0%
+  INFO [f3137b10] Running /usr/bin/env chmod 700 /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh as vlyagusha@35.246.230.32
+ DEBUG [f3137b10] Command: /usr/bin/env chmod 700 /tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh
+  INFO [f3137b10] Finished in 0.132 seconds with exit status 0 (successful).
+  INFO [11e009f5] Running /usr/bin/env git ls-remote git@github.com:vlyagusha/otus_diploma_api.git HEAD as vlyagusha@35.246.230.32
+ DEBUG [11e009f5] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git ls-remote git@github.com:vlyagusha/otus_diploma_api.git HEAD )
+ DEBUG [11e009f5] 	e107eb4a25971720e16c6318e2fb6ed578c6b178	HEAD
+  INFO [11e009f5] Finished in 2.523 seconds with exit status 0 (successful).
+  INFO [e2f26219] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared /home/vlyagusha/www/otus/releases as vlyagusha@35.246.230.32
+ DEBUG [e2f26219] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared /home/vlyagusha/www/otus/releases
+  INFO [e2f26219] Finished in 0.193 seconds with exit status 0 (successful).
+  INFO [b0cb27c9] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared/var as vlyagusha@35.246.230.32
+ DEBUG [b0cb27c9] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared/var
+  INFO [b0cb27c9] Finished in 0.121 seconds with exit status 0 (successful).
+  INFO [bf614210] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared as vlyagusha@35.246.230.32
+ DEBUG [bf614210] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/shared
+  INFO [bf614210] Finished in 0.118 seconds with exit status 0 (successful).
+ DEBUG [6b39c612] Running [ -f /home/vlyagusha/www/otus/shared/.env ] as vlyagusha@35.246.230.32
+ DEBUG [6b39c612] Command: [ -f /home/vlyagusha/www/otus/shared/.env ]
+ DEBUG [6b39c612] Finished in 0.129 seconds with exit status 0 (successful).
+ DEBUG [48ad2c58] Running [ -f /home/vlyagusha/www/otus/current/REVISION ] as vlyagusha@35.246.230.32
+ DEBUG [48ad2c58] Command: [ -f /home/vlyagusha/www/otus/current/REVISION ]
+ DEBUG [48ad2c58] Finished in 0.116 seconds with exit status 0 (successful).
+ DEBUG [26b3ee5d] Running /usr/bin/env cat /home/vlyagusha/www/otus/current/REVISION 2>/dev/null as vlyagusha@35.246.230.32
+ DEBUG [26b3ee5d] Command: /usr/bin/env cat /home/vlyagusha/www/otus/current/REVISION 2>/dev/null
+ DEBUG [26b3ee5d] 	e107eb4a25971720e16c6318e2fb6ed578c6b178
+ DEBUG [26b3ee5d] Finished in 0.121 seconds with exit status 0 (successful).
+ DEBUG [d1f7f751] Running [ -f /home/vlyagusha/www/otus/repo/HEAD ] as vlyagusha@35.246.230.32
+ DEBUG [d1f7f751] Command: [ -f /home/vlyagusha/www/otus/repo/HEAD ]
+ DEBUG [d1f7f751] Finished in 0.115 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/vlyagusha/www/otus/repo
+ DEBUG [4c418494] Running if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [4c418494] Command: if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi
+ DEBUG [4c418494] Finished in 0.116 seconds with exit status 0 (successful).
+  INFO [ca06ebe3] Running /usr/bin/env git remote set-url origin git@github.com:vlyagusha/otus_diploma_api.git as vlyagusha@35.246.230.32
+ DEBUG [ca06ebe3] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git remote set-url origin git@github.com:vlyagusha/otus_diploma_api.git )
+  INFO [ca06ebe3] Finished in 0.258 seconds with exit status 0 (successful).
+  INFO [49a6f396] Running /usr/bin/env git remote update --prune as vlyagusha@35.246.230.32
+ DEBUG [49a6f396] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [49a6f396] 	Fetching origin
+  INFO [49a6f396] Finished in 1.887 seconds with exit status 0 (successful).
+ DEBUG [604a3f24] Running if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [604a3f24] Command: if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi
+ DEBUG [604a3f24] Finished in 0.171 seconds with exit status 0 (successful).
+  INFO [9d149153] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091746 as vlyagusha@35.246.230.32
+ DEBUG [9d149153] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091746 )
+  INFO [9d149153] Finished in 0.119 seconds with exit status 0 (successful).
+  INFO [8f27b399] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/vlyagusha/www/otus/releases/20200419091746 as vlyagusha@35.246.230.32
+ DEBUG [8f27b399] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/vlyagusha/www/otus/releases/20200419091746 )
+  INFO [8f27b399] Finished in 0.134 seconds with exit status 0 (successful).
+ DEBUG [a25b1dfa] Running if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [a25b1dfa] Command: if test ! -d /home/vlyagusha/www/otus/repo; then echo "Directory does not exist '/home/vlyagusha/www/otus/repo'" 1>&2; false; fi
+ DEBUG [a25b1dfa] Finished in 0.116 seconds with exit status 0 (successful).
+ DEBUG [e934bbee] Running /usr/bin/env git rev-list --max-count=1 master as vlyagusha@35.246.230.32
+ DEBUG [e934bbee] Command: cd /home/vlyagusha/www/otus/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Otus_HW_17-production-vlyagusha.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [e934bbee] 	e107eb4a25971720e16c6318e2fb6ed578c6b178
+ DEBUG [e934bbee] Finished in 0.119 seconds with exit status 0 (successful).
+ DEBUG [507e3fd1] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [507e3fd1] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi
+ DEBUG [507e3fd1] Finished in 0.116 seconds with exit status 0 (successful).
+  INFO [3c92379d] Running /usr/bin/env echo "e107eb4a25971720e16c6318e2fb6ed578c6b178" > REVISION as vlyagusha@35.246.230.32
+ DEBUG [3c92379d] Command: cd /home/vlyagusha/www/otus/releases/20200419091746 && /usr/bin/env echo "e107eb4a25971720e16c6318e2fb6ed578c6b178" > REVISION
+  INFO [3c92379d] Finished in 0.119 seconds with exit status 0 (successful).
+  INFO [8e433c28] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091746 as vlyagusha@35.246.230.32
+ DEBUG [8e433c28] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091746
+  INFO [8e433c28] Finished in 0.117 seconds with exit status 0 (successful).
+ DEBUG [bc5e898f] Running [ -L /home/vlyagusha/www/otus/releases/20200419091746/.env ] as vlyagusha@35.246.230.32
+ DEBUG [bc5e898f] Command: [ -L /home/vlyagusha/www/otus/releases/20200419091746/.env ]
+ DEBUG [bc5e898f] Finished in 0.117 seconds with exit status 1 (failed).
+ DEBUG [e49dcc28] Running [ -f /home/vlyagusha/www/otus/releases/20200419091746/.env ] as vlyagusha@35.246.230.32
+ DEBUG [e49dcc28] Command: [ -f /home/vlyagusha/www/otus/releases/20200419091746/.env ]
+ DEBUG [e49dcc28] Finished in 0.129 seconds with exit status 1 (failed).
+  INFO [57b04688] Running /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/.env /home/vlyagusha/www/otus/releases/20200419091746/.env as vlyagusha@35.246.230.32
+ DEBUG [57b04688] Command: /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/.env /home/vlyagusha/www/otus/releases/20200419091746/.env
+  INFO [57b04688] Finished in 0.119 seconds with exit status 0 (successful).
+  INFO [b8016e34] Running /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091746 as vlyagusha@35.246.230.32
+ DEBUG [b8016e34] Command: /usr/bin/env mkdir -p /home/vlyagusha/www/otus/releases/20200419091746
+  INFO [b8016e34] Finished in 0.122 seconds with exit status 0 (successful).
+ DEBUG [8d077848] Running [ -L /home/vlyagusha/www/otus/releases/20200419091746/var ] as vlyagusha@35.246.230.32
+ DEBUG [8d077848] Command: [ -L /home/vlyagusha/www/otus/releases/20200419091746/var ]
+ DEBUG [8d077848] Finished in 0.133 seconds with exit status 1 (failed).
+ DEBUG [7d75deac] Running [ -d /home/vlyagusha/www/otus/releases/20200419091746/var ] as vlyagusha@35.246.230.32
+ DEBUG [7d75deac] Command: [ -d /home/vlyagusha/www/otus/releases/20200419091746/var ]
+ DEBUG [7d75deac] Finished in 0.121 seconds with exit status 1 (failed).
+  INFO [d049a4c6] Running /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/var /home/vlyagusha/www/otus/releases/20200419091746/var as vlyagusha@35.246.230.32
+ DEBUG [d049a4c6] Command: /usr/bin/env ln -s /home/vlyagusha/www/otus/shared/var /home/vlyagusha/www/otus/releases/20200419091746/var
+  INFO [d049a4c6] Finished in 0.120 seconds with exit status 0 (successful).
+ DEBUG [4702be95] Running /usr/bin/env ls -xr /home/vlyagusha/www/otus/releases as vlyagusha@35.246.230.32
+ DEBUG [4702be95] Command: /usr/bin/env ls -xr /home/vlyagusha/www/otus/releases
+ DEBUG [4702be95] 	20200419091746	20200419091702	20200418180249	20200418175815	20200418175449
+20200418174755
+ DEBUG [4702be95] Finished in 0.118 seconds with exit status 0 (successful).
+ DEBUG [2187c395] Running [ -f /home/vlyagusha/www/otus/releases/20200419091702/vendor ] as vlyagusha@35.246.230.32
+ DEBUG [2187c395] Command: [ -f /home/vlyagusha/www/otus/releases/20200419091702/vendor ]
+ DEBUG [2187c395] Finished in 0.116 seconds with exit status 1 (failed).
+ DEBUG [a912ef47] Running [ -d /home/vlyagusha/www/otus/releases/20200419091702/vendor ] as vlyagusha@35.246.230.32
+ DEBUG [a912ef47] Command: [ -d /home/vlyagusha/www/otus/releases/20200419091702/vendor ]
+ DEBUG [a912ef47] Finished in 0.116 seconds with exit status 0 (successful).
+  INFO [5cf276d2] Running /usr/bin/env cp -R /home/vlyagusha/www/otus/releases/20200419091702/vendor /home/vlyagusha/www/otus/releases/20200419091746/vendor as vlyagusha@35.246.230.32
+ DEBUG [5cf276d2] Command: /usr/bin/env cp -R /home/vlyagusha/www/otus/releases/20200419091702/vendor /home/vlyagusha/www/otus/releases/20200419091746/vendor
+  INFO [5cf276d2] Finished in 0.247 seconds with exit status 0 (successful).
+ DEBUG [d87d0933] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [d87d0933] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi
+ DEBUG [d87d0933] Finished in 0.116 seconds with exit status 0 (successful).
+  INFO [746ee7d1] Running /usr/bin/env composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as vlyagusha@35.246.230.32
+ DEBUG [746ee7d1] Command: cd /home/vlyagusha/www/otus/releases/20200419091746 && /usr/bin/env composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader
+  INFO [746ee7d1] Finished in 1.041 seconds with exit status 0 (successful).
+ DEBUG [7dc356dd] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [7dc356dd] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi
+ DEBUG [7dc356dd] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO [e13e5d93] Running /usr/bin/env bin/console doctrine:migrations:migrate --no-interaction as vlyagusha@35.246.230.32
+ DEBUG [e13e5d93] Command: cd /home/vlyagusha/www/otus/releases/20200419091746 && /usr/bin/env bin/console doctrine:migrations:migrate --no-interaction
+ DEBUG [e13e5d93] 	                                                              
+ DEBUG [e13e5d93] 	                    Application Migrations                    
+ DEBUG [e13e5d93] 	                                                              
+ DEBUG [e13e5d93] 	
+ DEBUG [e13e5d93] 	No migrations to execute.
+  INFO [e13e5d93] Finished in 0.253 seconds with exit status 0 (successful).
+ DEBUG [ce86b457] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [ce86b457] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi
+ DEBUG [ce86b457] Finished in 0.119 seconds with exit status 0 (successful).
+  INFO [3460db54] Running /usr/bin/env bin/console cache:clear as vlyagusha@35.246.230.32
+ DEBUG [3460db54] Command: cd /home/vlyagusha/www/otus/releases/20200419091746 && /usr/bin/env bin/console cache:clear
+ DEBUG [3460db54] 	
+ DEBUG [3460db54] 	 // Clearing the cache for the prod environment with debug                      
+ DEBUG [3460db54] 	 // false                                                                       
+ DEBUG [3460db54] 	
+ DEBUG [3460db54] 	 [OK] Cache for the "prod" environment (debug=false) was successfully cleared.  
+ DEBUG [3460db54] 	
+  INFO [3460db54] Finished in 0.412 seconds with exit status 0 (successful).
+ DEBUG [2373be90] Running if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [2373be90] Command: if test ! -d /home/vlyagusha/www/otus/releases/20200419091746; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases/20200419091746'" 1>&2; false; fi
+ DEBUG [2373be90] Finished in 0.116 seconds with exit status 0 (successful).
+  INFO [5bf1c7d9] Running /usr/bin/env bin/console cache:warmup as vlyagusha@35.246.230.32
+ DEBUG [5bf1c7d9] Command: cd /home/vlyagusha/www/otus/releases/20200419091746 && /usr/bin/env bin/console cache:warmup
+ DEBUG [5bf1c7d9] 	
+ DEBUG [5bf1c7d9] 	 // Warming up the cache for the prod environment with debug                    
+ DEBUG [5bf1c7d9] 	 // false                                                                       
+ DEBUG [5bf1c7d9] 	
+ DEBUG [5bf1c7d9] 	 [OK] Cache for the "prod" environment (debug=false) was successfully warmed.   
+ DEBUG [5bf1c7d9] 	
+  INFO [5bf1c7d9] Finished in 0.230 seconds with exit status 0 (successful).
+  INFO [7d074049] Running /usr/bin/env ln -s /home/vlyagusha/www/otus/releases/20200419091746 /home/vlyagusha/www/otus/releases/current as vlyagusha@35.246.230.32
+ DEBUG [7d074049] Command: /usr/bin/env ln -s /home/vlyagusha/www/otus/releases/20200419091746 /home/vlyagusha/www/otus/releases/current
+  INFO [7d074049] Finished in 0.126 seconds with exit status 0 (successful).
+  INFO [a8c56960] Running /usr/bin/env mv /home/vlyagusha/www/otus/releases/current /home/vlyagusha/www/otus as vlyagusha@35.246.230.32
+ DEBUG [a8c56960] Command: /usr/bin/env mv /home/vlyagusha/www/otus/releases/current /home/vlyagusha/www/otus
+  INFO [a8c56960] Finished in 0.122 seconds with exit status 0 (successful).
+ DEBUG [3f472c66] Running /usr/bin/env ls -x /home/vlyagusha/www/otus/releases as vlyagusha@35.246.230.32
+ DEBUG [3f472c66] Command: /usr/bin/env ls -x /home/vlyagusha/www/otus/releases
+ DEBUG [3f472c66] 	20200418174755	20200418175449	20200418175815	20200418180249	20200419091702
+20200419091746
+ DEBUG [3f472c66] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on 35.246.230.32
+ DEBUG [39b25dbd] Running [ -d /home/vlyagusha/www/otus/current ] as vlyagusha@35.246.230.32
+ DEBUG [39b25dbd] Command: [ -d /home/vlyagusha/www/otus/current ]
+ DEBUG [39b25dbd] Finished in 0.141 seconds with exit status 0 (successful).
+ DEBUG [622f34aa] Running /usr/bin/env readlink /home/vlyagusha/www/otus/current as vlyagusha@35.246.230.32
+ DEBUG [622f34aa] Command: /usr/bin/env readlink /home/vlyagusha/www/otus/current
+ DEBUG [622f34aa] 	/home/vlyagusha/www/otus/releases/20200419091746
+ DEBUG [622f34aa] Finished in 0.120 seconds with exit status 0 (successful).
+  INFO [4cfc8655] Running /usr/bin/env rm -rf /home/vlyagusha/www/otus/releases/20200418174755 as vlyagusha@35.246.230.32
+ DEBUG [4cfc8655] Command: /usr/bin/env rm -rf /home/vlyagusha/www/otus/releases/20200418174755
+  INFO [4cfc8655] Finished in 0.230 seconds with exit status 0 (successful).
+ DEBUG [7a19363f] Running if test ! -d /home/vlyagusha/www/otus/releases; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases'" 1>&2; false; fi as vlyagusha@35.246.230.32
+ DEBUG [7a19363f] Command: if test ! -d /home/vlyagusha/www/otus/releases; then echo "Directory does not exist '/home/vlyagusha/www/otus/releases'" 1>&2; false; fi
+ DEBUG [7a19363f] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO [c7d0effe] Running /usr/bin/env echo "Branch master (at e107eb4a25971720e16c6318e2fb6ed578c6b178) deployed as release 20200419091746 by vlyagusha" >> /home/vlyagusha/www/otus/revisions.log as vlyagusha@35.246.230.32
+ DEBUG [c7d0effe] Command: cd /home/vlyagusha/www/otus/releases && /usr/bin/env echo "Branch master (at e107eb4a25971720e16c6318e2fb6ed578c6b178) deployed as release 20200419091746 by vlyagusha" >> /home/vlyagusha/www/otus/revisions.log
+  INFO [c7d0effe] Finished in 0.126 seconds with exit status 0 (successful).
