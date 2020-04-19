@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\UserMoviePreference;
 use App\Repository\UserMoviePreferenceRepository;
+use App\Service\MoviesInfoProvider;
+use App\Service\UserMovieRecommendationsManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +46,9 @@ final class UserMovieController extends AbstractController
     public function getUserMovieRecommendationsAction(
         Request $request,
         string $userId,
-        UserMoviePreferenceRepository $userMoviePreferenceRepository
+        UserMovieRecommendationsManager $userMovieRecommendationsManager,
+        UserMoviePreferenceRepository $userMoviePreferenceRepository,
+        MoviesInfoProvider $moviesInfoProvider
     ): Response {
         $limit = $request->query->getInt('limit', 5);
 
@@ -52,15 +56,18 @@ final class UserMovieController extends AbstractController
         if ($userMoviePreference === null) {
             return $this->json([
                 'status' => false,
-                'likes' => null,
+                'message' => 'Нет информации о предпочтениях пользователя'
             ]);
         }
 
-        $likes = $userMoviePreferenceRepository->getLikes($userMoviePreference);
+        $recommendations = $userMovieRecommendationsManager->getRecommendations($userMoviePreference, $limit);
+        if ($recommendations === []) {
+            $recommendations = $moviesInfoProvider->getRecommendations($userMoviePreference, $limit);
+        }
 
         return $this->json([
             'status' => true,
-            'likes' => array_slice($likes, 0, $limit),
+            'recommendations' => $recommendations,
         ]);
     }
 }

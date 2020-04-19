@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use App\Entity\UserMoviePreference;
+
 class MoviesInfoProvider
 {
     private TmdbApiClient $apiClient;
@@ -27,5 +29,37 @@ class MoviesInfoProvider
         });
 
         return $result;
+    }
+
+    public function getMovie(int $movieId): ?array
+    {
+        $movie = $this->apiClient->getMovie($movieId);
+        if ($movie === null) {
+            return null;
+        }
+
+        return [
+            'id' => $movie['id'],
+            'title' => $movie['title'],
+        ];
+    }
+
+    public function getRecommendations(UserMoviePreference $userMoviePreference, int $limit = 5): array
+    {
+        $recommendations = [];
+        foreach ($userMoviePreference->getMovies() as $movieId) {
+            $response = $this->apiClient->getMovieRecommendations($movieId);
+            if ($response === null) {
+                continue;
+            }
+            foreach ($response['results'] as $result) {
+                $recommendations[$result['id']] = [
+                    'id' => $result['id'],
+                    'title' => $result['title'],
+                ];
+            }
+        }
+
+        return array_slice(array_values($recommendations), 0, $limit);
     }
 }
