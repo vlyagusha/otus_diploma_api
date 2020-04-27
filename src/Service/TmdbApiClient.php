@@ -24,14 +24,16 @@ class TmdbApiClient
 
     public function getMoviesList(string $title, int $page = 1): array
     {
+        $uri = sprintf('%s/search/movie', $this->endpoint);
         try {
-            $response = $this->client->get($this->endpoint . "/search/movie", [
+            $response = $this->client->get($uri, [
                 'query' => [
                     'api_key' => $this->key,
                     'language' => 'ru-RU',
                     'include_adult' => false,
                     'query' => $title,
                     'page' => $page,
+                    'region' => 'RU'
                 ],
             ]);
         } catch (GuzzleException $guzzleException) {
@@ -48,8 +50,9 @@ class TmdbApiClient
 
     public function getMovie(int $movieId): ?array
     {
+        $uri = sprintf('%s/movie/%s', $this->endpoint, $movieId);
         try {
-            $response = $this->client->get($this->endpoint . "/movie/$movieId", [
+            $response = $this->client->get($uri, [
                 'query' => [
                     'api_key' => $this->key,
                     'language' => 'ru-RU',
@@ -69,8 +72,9 @@ class TmdbApiClient
 
     public function getMovieRecommendations(int $movieId): ?array
     {
+        $uri = sprintf('%s/movie/%s/recommendations', $this->endpoint, $movieId);
         try {
-            $response = $this->client->get($this->endpoint . "/movie/$movieId/recommendations", [
+            $response = $this->client->get($uri, [
                 'query' => [
                     'api_key' => $this->key,
                     'language' => 'ru-RU',
@@ -91,8 +95,9 @@ class TmdbApiClient
 
     public function getMovieVideos(int $movieId): ?array
     {
+        $uri = sprintf('%s/movie/%s/videos', $this->endpoint, $movieId);
         try {
-            $response = $this->client->get($this->endpoint . "/movie/$movieId/videos", [
+            $response = $this->client->get($uri, [
                 'query' => [
                     'api_key' => $this->key,
                     'language' => 'ru-RU',

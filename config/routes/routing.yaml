@@ -3,7 +3,7 @@ app_movie_get_list:
     methods: GET
     controller: App\Controller\MovieController::getListAction
     requirements:
-        slug: '\w+'
+        slug: '.+'
 
 app_user_movie_preference_post:
     path: /movies/preference
