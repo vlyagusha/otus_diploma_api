@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\UserMoviePreferenceRepository;
-use App\Service\MoviesInfoProvider;
 use App\Service\Security\RequestSignChecker;
 use App\Service\UserMoviePreferencesManager;
-use App\Service\UserMovieRecommendationsProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,37 +34,6 @@ final class UserMovieController extends AbstractController
         return $this->json([
             'status' => true,
             'movies' => $userMoviePreference->getMovies()
-        ]);
-    }
-
-    public function getUserMovieRecommendationsAction(
-        Request $request,
-        string $userId,
-        UserMovieRecommendationsProvider $userMovieRecommendationsManager,
-        UserMoviePreferenceRepository $userMoviePreferenceRepository,
-        MoviesInfoProvider $moviesInfoProvider,
-        RequestSignChecker $requestSignChecker
-    ): Response {
-        $requestSignChecker->checkSign($request);
-
-        $limit = $request->query->getInt('limit', 5);
-
-        $userMoviePreference = $userMoviePreferenceRepository->find($userId);
-        if ($userMoviePreference === null) {
-            return $this->json([
-                'status' => false,
-                'message' => 'Нет информации о предпочтениях пользователя'
-            ], Response::HTTP_NOT_FOUND);
-        }
-
-        $recommendations = $userMovieRecommendationsManager->getRecommendations($userMoviePreference, $limit);
-        if ($recommendations === []) {
-            $recommendations = $moviesInfoProvider->getRecommendations($userMoviePreference, $limit);
-        }
-
-        return $this->json([
-            'status' => true,
-            'recommendations' => $recommendations,
         ]);
     }
 }

@@ -4,19 +4,20 @@ namespace App\Service;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Sentry\ClientInterface as SentryClient;
 use Symfony\Component\HttpFoundation\Response;
 
 class TmdbApiClient
 {
     private Client $client;
-
+    private SentryClient $sentry;
     private string $endpoint;
-
     private string $key;
 
-    public function __construct(Client $client, string $endpoint, string $key)
+    public function __construct(Client $client, SentryClient $sentry, string $endpoint, string $key)
     {
         $this->client = $client;
+        $this->sentry = $sentry;
         $this->endpoint = $endpoint;
         $this->key = $key;
     }
@@ -34,6 +35,11 @@ class TmdbApiClient
                 ],
             ]);
         } catch (GuzzleException $guzzleException) {
+            $this->sentry->captureException($guzzleException);
+
+            return [];
+        }
+        if ($response->getStatusCode() !== Response::HTTP_OK) {
             return [];
         }
 
@@ -50,6 +56,8 @@ class TmdbApiClient
                 ],
             ]);
         } catch (GuzzleException $guzzleException) {
+            $this->sentry->captureException($guzzleException);
+
             return null;
         }
         if ($response->getStatusCode() !== Response::HTTP_OK) {
@@ -70,6 +78,29 @@ class TmdbApiClient
                 ],
             ]);
         } catch (GuzzleException $guzzleException) {
+            $this->sentry->captureException($guzzleException);
+
+            return null;
+        }
+        if ($response->getStatusCode() !== Response::HTTP_OK) {
+            return null;
+        }
+
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    public function getMovieVideos(int $movieId): ?array
+    {
+        try {
+            $response = $this->client->get($this->endpoint . "/movie/$movieId/videos", [
+                'query' => [
+                    'api_key' => $this->key,
+                    'language' => 'ru-RU',
+                ],
+            ]);
+        } catch (GuzzleException $guzzleException) {
+            $this->sentry->captureException($guzzleException);
+
             return null;
         }
         if ($response->getStatusCode() !== Response::HTTP_OK) {

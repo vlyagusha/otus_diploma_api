@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\MovieInfo;
 use App\Entity\UserMoviePreference;
 
 class MoviesInfoProvider
@@ -31,17 +32,19 @@ class MoviesInfoProvider
         return $result;
     }
 
-    public function getMovie(int $movieId): ?array
+    public function getMovieInfo(int $movieId): ?MovieInfo
     {
         $movie = $this->apiClient->getMovie($movieId);
         if ($movie === null) {
             return null;
         }
 
-        return [
-            'id' => $movie['id'],
-            'title' => $movie['title'],
-        ];
+        $movieInfo = new MovieInfo();
+        $movieInfo->setId($movie['id']);
+        $movieInfo->setTitle($movie['title']);
+        $movieInfo->setTrailerLink($this->retrieveTrailerLink($movie['id']));
+
+        return $movieInfo;
     }
 
     public function getRecommendations(UserMoviePreference $userMoviePreference, int $limit = 5): array
@@ -53,13 +56,44 @@ class MoviesInfoProvider
                 continue;
             }
             foreach ($response['results'] as $result) {
-                $recommendations[$result['id']] = [
-                    'id' => $result['id'],
-                    'title' => $result['title'],
-                ];
+                $movieInfo = new MovieInfo();
+                $movieInfo->setId($result['id']);
+                $movieInfo->setTitle($result['title']);
+                $movieInfo->setTrailerLink($this->retrieveTrailerLink($result['id']));
+
+                $recommendations[] = $movieInfo;
+
+                if (count($recommendations) === $limit) {
+                    break(2);
+                }
             }
         }
 
-        return array_slice(array_values($recommendations), 0, $limit);
+        return $recommendations;
+    }
+
+    private function retrieveTrailerLink(int $movieId): ?string
+    {
+        $videos = $this->apiClient->getMovieVideos($movieId);
+
+        if (!isset($videos['results'])) {
+            return null;
+        }
+
+        foreach ($videos['results'] as $video) {
+            if (isset($video['type']) && $video['type'] !== 'Trailer') {
+                continue;
+            }
+            if (isset($video['site']) && $video['site'] !== 'YouTube') {
+                continue;
+            }
+            if (!isset($video['key'])) {
+                continue;
+            }
+
+            return sprintf('https://www.youtube.com/watch?v=%s', $video['key']);
+        }
+
+        return null;
     }
 }
