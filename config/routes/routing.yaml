@@ -12,7 +12,7 @@ app_user_movie_preference_post:
 
 app_user_movie_preference_delete:
     path: /movies/preference
-    methods: OPTIONS
+    methods: DELETE
     controller: App\Controller\UserMovieController::deleteUserMoviePreferenceAction
 
 app_user_movie_recommendations_get:
