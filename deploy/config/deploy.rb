@@ -24,7 +24,7 @@ set :deploy_to, '/home/vlyagusha/www/otus'
 append :linked_files, '.env'
 
 # Default value for linked_dirs is []
-append :linked_dirs, 'var'
+append :linked_dirs, 'var/log'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
