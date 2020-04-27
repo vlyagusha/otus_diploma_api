@@ -69,7 +69,7 @@ namespace :migrations do
 end
 
 namespace :deploy do
-  after :updated, 'migrations:migrate'
-  after :updated, 'cache:clear'
-  after :updated, 'cache:warmup'
+  after :finishing, 'migrations:migrate'
+  after :finishing, 'cache:clear'
+  after :finishing, 'cache:warmup'
 end
