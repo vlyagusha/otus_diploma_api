@@ -42,10 +42,15 @@ class MovieInfo implements \JsonSerializable
 
     public function jsonSerialize()
     {
-        return [
+        $array = [
             'id' => $this->getId(),
             'title' => $this->getTitle(),
-            'trailerLink' => $this->getTrailerLink(),
         ];
+
+        if ($this->getTrailerLink() !== null) {
+            $array['trailerLink'] = $this->getTrailerLink();
+        }
+
+        return $array;
     }
 }

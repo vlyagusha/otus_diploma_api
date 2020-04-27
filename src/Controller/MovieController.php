@@ -22,7 +22,7 @@ final class MovieController extends AbstractController
 
         return $this->json([
             'status' => true,
-            'movies' => $moviesInfoProvider->getList($slug, $page),
+            'movies' => $moviesInfoProvider->getMovies($slug, $page),
         ]);
     }
 }

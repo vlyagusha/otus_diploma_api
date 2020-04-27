@@ -14,22 +14,20 @@ class MoviesInfoProvider
         $this->apiClient = $apiClient;
     }
 
-    public function getList(string $title, int $page = 1): array
+    public function getMovies(string $title, int $page = 1): array
     {
-        $result = [];
+        $movies = [];
         $moviesList = $this->apiClient->getMoviesList($title, $page);
         foreach ($moviesList['results'] as $movie) {
-            $result[] = [
-                'id' => $movie['id'],
-                'title' => $movie['title'],
-                'popularity' => $movie['popularity'],
-            ];
-        }
-        usort($result, function ($a, $b) {
-            return $b['popularity'] <=> $a['popularity'];
-        });
+            $movieInfo = new MovieInfo();
+            $movieInfo->setId($movie['id']);
+            $movieInfo->setTitle($movie['title']);
+            $movieInfo->setTrailerLink(null);
 
-        return $result;
+            $movies[] = $movieInfo;
+        }
+
+        return $movies;
     }
 
     public function getMovieInfo(int $movieId): ?MovieInfo
