@@ -10,6 +10,11 @@ app_user_movie_preference_post:
     methods: POST
     controller: App\Controller\UserMovieController::postUserMoviePreferenceAction
 
+app_user_movie_preference_delete:
+    path: /movies/preference
+    methods: DELETE
+    controller: App\Controller\UserMovieController::deleteUserMoviePreferenceAction
+
 app_user_movie_recommendations_get:
     path: /movies/user/{userId}/recommendations
     methods: GET

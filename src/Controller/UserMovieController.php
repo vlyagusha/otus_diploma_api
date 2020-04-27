@@ -36,4 +36,24 @@ final class UserMovieController extends AbstractController
             'movies' => $userMoviePreference->getMovies()
         ]);
     }
+
+    public function deleteUserMoviePreferenceAction(
+        Request $request,
+        UserMoviePreferencesManager $userMoviePreferencesManager,
+        RequestSignChecker $requestSignChecker
+    ): Response {
+        $requestSignChecker->checkSign($request);
+
+        $requestData = json_decode($request->getContent(), true);
+        if (!isset($requestData['user_id'])) {
+            throw new BadRequestHttpException();
+        }
+        $userId = $requestData['user_id'];
+
+        $userMoviePreferencesManager->deleteUserMoviePreferences($userId);
+
+        return $this->json([
+            'status' => true
+        ]);
+    }
 }

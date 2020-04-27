@@ -48,7 +48,7 @@ URL: `/movies/preference`
 	]
 }
 ```
-где `user_id` - id полльзователя (строка), `movies` - массив целых чисел (
+где `user_id` - id пользователя (строка), `movies` - массив целых чисел (
 id фильмов)
 
 Ответ:
@@ -111,3 +111,23 @@ URL: `/movies/user/{userId}/recommendations`
 }
 ```
 где `recommendations` - массив
+
+#### 4. Удаление всех предпочтений пользователя
+Метод: `DELETE`
+
+URL: `/movies/preference`
+
+Тело запроса:
+```
+{
+	"user_id": "vlyagusha"
+}
+```
+где `user_id` - id пользователя (строка)
+
+Ответ:
+```
+{
+    "status": true
+}
+```

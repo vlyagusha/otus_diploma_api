@@ -33,4 +33,15 @@ class UserMoviePreferencesManager
 
         return $userMoviePreference;
     }
+
+    public function deleteUserMoviePreferences(string $userId): void
+    {
+        $userMoviePreference = $this->entityManager->getRepository(UserMoviePreference::class)->find($userId);
+        if ($userMoviePreference !== null) {
+            $this->entityManager->remove($userMoviePreference);
+            $this->entityManager->flush();
+        }
+
+        return;
+    }
 }
