@@ -19,15 +19,18 @@ class UserMovieRecommendationsProvider
     public function getRecommendations(UserMoviePreference $userMoviePreference, int $limit = 5): array
     {
         $likes = $this->userMoviePreferenceRepository->getLikes($userMoviePreference);
-        $likes = array_slice($likes, 0, $limit);
+        if (empty($likes)) {
+            return $this->moviesInfoProvider->getRecommendations($userMoviePreference, $limit);
+        }
+
         $recommendations = [];
-        foreach ($likes as &$like) {
-            $movie = $this->moviesInfoProvider->getMovie($like['movie_id']);
-            if ($movie !== null) {
-                $recommendations[] = [
-                    'id' => $like['movie_id'],
-                    'title' => $movie['title'],
-                ];
+        foreach ($likes as $like) {
+            $movieInfo = $this->moviesInfoProvider->getMovieInfo($like['movie_id']);
+            if ($movieInfo !== null) {
+                $recommendations[] = $movieInfo;
+            }
+            if (count($recommendations) === $limit) {
+                break;
             }
         }
 

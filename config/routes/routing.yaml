@@ -13,6 +13,6 @@ app_user_movie_preference_post:
 app_user_movie_recommendations_get:
     path: /movies/user/{userId}/recommendations
     methods: GET
-    controller: App\Controller\UserMovieController::getUserMovieRecommendationsAction
+    controller: App\Controller\RecommendationsController::getUserRecommendationsAction
     requirements:
         userId: '\w+'
