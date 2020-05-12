@@ -19,10 +19,7 @@ class MoviesInfoProvider
         $movies = [];
         $moviesList = $this->apiClient->getMoviesList($title, $page);
         foreach ($moviesList['results'] as $movie) {
-            $movieInfo = new MovieInfo();
-            $movieInfo->setId($movie['id']);
-            $movieInfo->setTitle($movie['title']);
-            $movieInfo->setTrailerLink(null);
+            $movieInfo = $this->getFromArray($movie);
 
             $movies[] = $movieInfo;
         }
@@ -37,12 +34,7 @@ class MoviesInfoProvider
             return null;
         }
 
-        $movieInfo = new MovieInfo();
-        $movieInfo->setId($movie['id']);
-        $movieInfo->setTitle($movie['title']);
-        $movieInfo->setTrailerLink($this->retrieveTrailerLink($movie['id']));
-
-        return $movieInfo;
+        return $this->getFromArray($movie);
     }
 
     public function getRecommendations(UserMoviePreference $userMoviePreference, int $limit = 5): array
@@ -54,11 +46,7 @@ class MoviesInfoProvider
                 continue;
             }
             foreach ($response['results'] as $result) {
-                $movieInfo = new MovieInfo();
-                $movieInfo->setId($result['id']);
-                $movieInfo->setTitle($result['title']);
-                $movieInfo->setTrailerLink($this->retrieveTrailerLink($result['id']));
-
+                $movieInfo = $this->getFromArray($result);
                 $recommendations[] = $movieInfo;
 
                 if (count($recommendations) === $limit) {
@@ -68,6 +56,24 @@ class MoviesInfoProvider
         }
 
         return $recommendations;
+    }
+
+    private function getFromArray(array $movie): MovieInfo
+    {
+        $releaseDate = $movie['release_date'] ?? null;
+        if ($releaseDate !== null) {
+            $releaseYear = explode('-', $releaseDate)[0] ?? '';
+            $title = sprintf('%s (%s)', $movie['title'], $releaseYear);
+        } else {
+            $title = $movie['title'];
+        }
+
+        $movieInfo = new MovieInfo();
+        $movieInfo->setId($movie['id']);
+        $movieInfo->setTitle($title);
+        $movieInfo->setTrailerLink($this->retrieveTrailerLink($movie['id']));
+
+        return $movieInfo;
     }
 
     private function retrieveTrailerLink(int $movieId): ?string
