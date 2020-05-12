@@ -61,7 +61,7 @@ class MoviesInfoProvider
     private function getFromArray(array $movie): MovieInfo
     {
         $releaseDate = $movie['release_date'] ?? null;
-        if ($releaseDate !== null) {
+        if (!empty($releaseDate)) {
             $releaseYear = explode('-', $releaseDate)[0] ?? '';
             $title = sprintf('%s (%s)', $movie['title'], $releaseYear);
         } else {
